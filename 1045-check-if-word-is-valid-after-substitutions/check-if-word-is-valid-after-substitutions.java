@@ -6,6 +6,7 @@ class Solution {
                 if(s.substring(i,i+3).equals("abc")){
                     s = s.substring(0,i)+s.substring(i+3,s.length());
                     test = true;
+                    break;
                 }
             }
             if(test){
