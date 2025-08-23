@@ -1,34 +1,32 @@
 class Solution {
     public int numSubmat(int[][] mat) {
-        int r = mat.length, c = mat[0].length;
-        int[] h = new int[c];
-        int ans = 0;
-
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
-                h[j] = (mat[i][j] == 0) ? 0 : h[j] + 1;
+       int n = mat.length;
+       int m = mat[0].length;
+       
+       int[][] arr = new int[n][m];
+       for(int i=0;i<n;i++){
+        int c = 0;
+            for(int j=0;j<m;j++){
+                if(mat[i][j]==1){
+                    c++;        
+                }
+                else{
+                    c=0;
+                }
+                arr[i][j]=c;
             }
-            ans += count(h);
-        }
-        return ans;
-    }
-
-    private int count(int[] h) {
-        int n = h.length, res = 0;
-        int[] sum = new int[n];
-        Deque<Integer> st = new ArrayDeque<>();
-
-        for (int i = 0; i < n; i++) {
-            while (!st.isEmpty() && h[st.peek()] >= h[i]) st.pop();
-            if (!st.isEmpty()) {
-                int p = st.peek();
-                sum[i] = sum[p] + h[i] * (i - p);
-            } else {
-                sum[i] = h[i] * (i + 1);
+       }
+       
+       int op =0;
+       for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                int min = Integer.MAX_VALUE;
+                for(int k =i;k<n;k++){
+                    min = Math.min(min,arr[k][j]);
+                    op+=min;
+                }
             }
-            st.push(i);
-            res += sum[i];
-        }
-        return res;
+       }
+       return op;
     }
 }
