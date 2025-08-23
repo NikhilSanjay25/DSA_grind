@@ -6,7 +6,7 @@ class Solution {
        int[][] arr = new int[n][m];
        for(int i=0;i<n;i++){
         int c = 0;
-            for(int j=0;j<m;j++){
+            for(int j=m-1;j>=0;j--){
                 if(mat[i][j]==1){
                     c++;        
                 }
