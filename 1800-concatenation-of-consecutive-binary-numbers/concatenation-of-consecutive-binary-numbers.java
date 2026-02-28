@@ -7,7 +7,7 @@ class Solution {
             if((i&(i-1))==0){
                 bits++;
             }
-            op=((op<<bits)|i)%mod;
+            op=((op<<bits)+i)%mod;
         }
         return (int)op;
     }
