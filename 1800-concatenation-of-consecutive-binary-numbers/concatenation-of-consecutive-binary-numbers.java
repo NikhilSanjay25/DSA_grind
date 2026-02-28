@@ -1,14 +1,14 @@
 class Solution {
     public int concatenatedBinary(int n) {
-        int op = 1;
+        long op = 1;
+        long mod = 1000000007;
+        int bits = 1;
         for(int i=2;i<=n;i++){
-            String a = Integer.toBinaryString(i);
-            for(int j=0;j<a.length();j++){
-                op=op<<1;
-                op = op%1000000007;
+            if((i&(i-1))==0){
+                bits++;
             }
-            op+=i;
+            op=((op<<bits)|i)%mod;
         }
-        return op;
+        return (int)op;
     }
 }
